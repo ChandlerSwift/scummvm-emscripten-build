@@ -1,0 +1,34 @@
+diff --git a/base/main.cpp b/base/main.cpp
+index e53d2fbd9d..0049e938e5 100644
+--- a/base/main.cpp
++++ b/base/main.cpp
+@@ -29,7 +29,7 @@
+  */
+ 
+ #ifdef EMSCRIPTEN
+-#include <libc/sys/stat.h>
++#include <sys/stat.h>
+ #include <unistd.h>
+ #endif
+ 
+@@ -372,6 +372,7 @@ extern "C" int scummvm_main(int argc, const char * const argv[]) {
+ 	const char * args[3] = { "scummvm", "", "" };
+ 	if (directoryExists("/dott")) { args[1] = "-p/dott"; args[2] = "tentacle"; }
+         if (directoryExists("/monkey")) { args[1] = "-p/monkey"; args[2] = "monkey"; }
++        if (directoryExists("/baseball")) { args[1] = "-p/baseball"; args[2] = "baseball"; }
+         if (directoryExists("/samnmax")) { args[1] = "-p/samnmax"; args[2] = "samnmax"; }
+         if (directoryExists("/atlantis")) { args[1] = "-p/atlantis"; args[2] = "atlantis"; }
+         if (directoryExists("/indy3")) { args[1] = "-p/indy3"; args[2] = "indy3"; }
+diff --git a/common/forbidden.h b/common/forbidden.h
+index 9050114442..9ce33d5559 100644
+--- a/common/forbidden.h
++++ b/common/forbidden.h
+@@ -38,7 +38,7 @@
+  * in frontend code. However, this should only be used as a temporary
+  * measure. Especially new code should avoid this at all costs.
+  */
+-
++#define FORBIDDEN_SYMBOL_ALLOW_ALL
+ #ifndef FORBIDDEN_SYMBOL_ALLOW_ALL
+ 
+ // Make sure scummsys.h is always included first
